@@ -1,40 +1,54 @@
-﻿@model webApp12.Models.Question
+﻿@model webApp12.Models.QuestionAnswer
 
 @{
     ViewBag.Title = "Delete";
 }
+<table class="table table-hover">
+    <div>
+        <h4>Total Answers: @ViewBag.Counts</h4>
+        <br />
+        @foreach (var item in Model.answersList)
+        {
+            <dl class="dl-horizontal">
+                @*@Html.DisplayFor(modelItem => item.answers2.Answers)*@
+        <tr>
+            <td>
+                @*@item.questions2.Question1*@
+                @Html.DisplayFor(modelItem => item.Answers)
+            <!--<td>-->
+                @*@Html.DisplayFor(modelItem => item.Answer)*@
+            <!--</td>-->
 
-<h2>Delete</h2>
+            </td>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Question</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Question1)
-        </dt>
+            <!--<td>-->
+                @* @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |*@
+                @*@Html.ActionLink("Details", "Details", new { id = item.questions2.Id }) |*@
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.questions2.Id })*@
+            <!--</td>-->
 
-        <dd>
-            @Html.DisplayFor(model => model.Question1)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Answer)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Answer)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        @*<div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>*@
+        </tr>
+        </dl>
     }
-</div>
+
+        </div>
+        </table>
+
+
+        <div class="container">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @*@Html.TextBoxFor(model => model.answers2.QuestionID, new { @class = "form-control", @placeholder = "Id" })*@
+                @Html.TextAreaFor(model => model.answers2.Answers, new { @class = "form-control", @placeholder = "Answer" })
+                @*@Html.TextBoxFor(model => model.QuestionID, new { @class = "form-control", @placeholder = "Id" })*@
+                <input type="submit" value="Submit" class="btn btn-block btn-primary" onclick="location.href='@Url.Action("Deletef", "QuestionsController")'">
+
+                @*@Html.TextBoxFor(model => model.AnswerName, new { @class = "form-control", @placeholder = "Id" })*@
+            }
+
+        </div>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

@@ -13,10 +13,10 @@ namespace webApp12.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class webappEntities : DbContext
+    public partial class webappEntities2 : DbContext
     {
-        public webappEntities()
-            : base("name=webappEntities")
+        public webappEntities2()
+            : base("name=webappEntities2")
         {
         }
     
@@ -25,6 +25,7 @@ namespace webApp12.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Answer> Answers { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
     }
 }

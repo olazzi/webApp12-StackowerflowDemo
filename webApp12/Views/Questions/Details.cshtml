@@ -1,34 +1,93 @@
-﻿@model webApp12.Models.Question
+﻿@model IEnumerable<webApp12.Models.QuestionAnswer>
 
 @{
     ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
+<table class="table table-hover">
+    <div>
+        <h4>Question</h4>
+        <br />
 
-<div>
-    <h4>Question</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Question1)
-        </dt>
+        
+        @foreach (var item2 in Model) {  
+            <h3>@Html.DisplayFor(model => item2.questions2.Question1)</h3>
+        }            <hr />
+            <dl class="dl-horizontal">
 
-        <dd>
-            @Html.DisplayFor(model => model.Question1)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Answer)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Answer)
-        </dd>
+                @foreach (var item in Model)
+                {
+                    @*@Html.DisplayFor(modelItem => item.answers2.Answers)*@
+<tr>
+            <td>
+                @*@item.questions2.Question1*@
+                @Html.DisplayFor(modelItem => item.answers2.Answers)
 
-    </dl>
+                <br />
+
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Answer)*@
+            </td>
+            </td>
+
+            <td>
+                @* @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |*@
+                @*@Html.ActionLink("Details", "Details", new { id = item.questions2.Id }) |*@
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.questions2.Id })*@
+            </td>
+
+        </tr>
+    }
+          
+</dl>
 </div>
+<table />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-horizontal">
+        <h4>Add an answer</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.Question1, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Question1, new { htmlAttributes = new { @class = "form-control" } })*@
+                @*@Html.HiddenFor(model => model.Question1)*@
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.Answer, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Answer, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Answer, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        @*@Html.HiddenFor(model => model.Id)*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="form-group">
+                    <label for="answerarea">Your Answer</label>
+                    <textarea class="form-control" placeholder="Calismiyor" id="answerarea" rows="4"></textarea>
+                </div>
+                <input type="submit" value="Save" class="btn btn-succes" />
+            </div>
+        </div>
+    </div>
+
+
+}
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
     @Html.ActionLink("Back to List", "Index")
 </p>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
