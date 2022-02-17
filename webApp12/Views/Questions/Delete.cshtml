@@ -5,13 +5,16 @@
 }
 <table class="table table-hover">
     <div>
-        <h4>Total Answers: @ViewBag.Counts</h4>
+        <h4>Total Answers: @ViewBag.Counts1</h4>
         <br />
+        <h3> @ViewBag.Quest1</h3>
         @foreach (var item in Model.answersList)
         {
             <dl class="dl-horizontal">
                 @*@Html.DisplayFor(modelItem => item.answers2.Answers)*@
-        <tr>
+
+<tr>
+   
             <td>
                 @*@item.questions2.Question1*@
                 @Html.DisplayFor(modelItem => item.Answers)

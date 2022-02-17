@@ -149,6 +149,8 @@ namespace webApp12.Controllers
         {
             Question question = db1.Questions.Find(id);
             qa.answersList = db1.Answers.Where(a => a.QuestionID == id).ToList();
+            ViewBag.Counts1 = qa.answersList.Count();
+            ViewBag.Quest1 = question.Question1;
             return View(qa);
 
         }
@@ -174,14 +176,10 @@ namespace webApp12.Controllers
             db1.SaveChanges();
 
             List<Answer> answers = db1.Answers.ToList();
-            var query = db1.Answers.Where(a => a.QuestionID == id).ToList();
-            int count = query.Count();
-            ViewBag.Counts = count;
-            
-
-
             qa.answersList = db1.Answers.Where(a => a.QuestionID == id).ToList();
+            
             return View(qa);
+           
         }
 
         //[HttpPost, ActionName("Delete")]
